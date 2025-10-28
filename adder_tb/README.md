@@ -1,5 +1,6 @@
 # Adder UVM Verification Project
-
+## Quick Start with EDA Playground
+https://edaplayground.com/x/Px73
 ## Overview
 This project implements a simple parameterized adder design and a complete UVM verification environment for it.  
 The goal is to provide a compact yet full SystemVerilog + UVM example that demonstrates how to connect a DUT through an interface, drive transactions, monitor outputs, and verify results using a scoreboard.
