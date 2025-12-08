@@ -7,3 +7,4 @@ This project implements a simple hardware design using SystemVerilog and builds 
 
 ## Labs List
 ### 1. [Lab01](https://github.com/Ridost/sv-uvm-labs/tree/main/lab01)
+### 2. [Lab02](https://github.com/Ridost/sv-uvm-labs/tree/main/lab02)
