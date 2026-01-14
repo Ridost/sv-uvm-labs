@@ -19,7 +19,6 @@ class fifo_test extends uvm_test;
     phase.raise_objection(this);
     seq = fifo_sequence::type_id::create("seq");
     seq.start(env.agt.seqr);
-    #200;
     phase.drop_objection(this);
   endtask
 endclass

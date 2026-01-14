@@ -1,5 +1,4 @@
-interface fifo_if #(parameter DATA_WIDTH=8, parameter DEPTH=16) ();
-    logic clk;
+interface fifo_if #(parameter DATA_WIDTH=8, parameter DEPTH=16) (input logic clk);
     logic rst_n;
     logic wr_en;
     logic rd_en;
@@ -8,6 +7,7 @@ interface fifo_if #(parameter DATA_WIDTH=8, parameter DEPTH=16) ();
     logic full;
     logic empty;
 
+    
 
     modport DRV( input clk,
                  output rst_n,

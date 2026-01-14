@@ -39,6 +39,7 @@ class fifo_monitor extends uvm_component;
     fifo_monitor_trans tr;
     forever begin
       @(posedge vif.clk);
+      #1;
       tr = fifo_monitor_trans::type_id::create("tr");
       tr.wr_en = vif.wr_en;
       tr.rd_en = vif.rd_en;

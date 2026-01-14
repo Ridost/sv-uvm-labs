@@ -16,20 +16,29 @@ class fifo_scoreboard extends uvm_component;
   endfunction
 
   function void write(fifo_monitor_trans tr);
+    bit expected_full;
+    bit expected_empty;
+
     if (!tr.rst_n) begin
       model_data.delete();
       model_count = 0;
       return;
     end
 
-    if (tr.wr_en) begin
+    bit do_wr;
+    bit do_rd;
+
+    do_wr = tr.wr_en && (model_count < DEPTH);
+    do_rd = tr.rd_en && (model_count > 0);
+
+    if (do_wr) begin
       model_data.push_back(tr.din);
       model_count++;
       if (model_count > DEPTH)
         `uvm_error("SCOREBOARD", "FIFO overflow detected in scoreboard model")
     end
 
-    if (tr.rd_en) begin
+    if (do_rd) begin
       if (model_data.size() == 0) begin
         `uvm_error("SCOREBOARD", "Read occurred while model was empty")
       end else begin
@@ -42,8 +51,8 @@ class fifo_scoreboard extends uvm_component;
       end
     end
 
-    bit expected_full  = (model_count == DEPTH);
-    bit expected_empty = (model_count == 0);
+    expected_full  = (model_count == DEPTH);
+    expected_empty = (model_count == 0);
 
     if (tr.full !== expected_full)
       `uvm_warning("SCOREBOARD", $sformatf("full signal mismatch (got %0b, expected %0b)", tr.full, expected_full));

@@ -15,7 +15,7 @@ module test;
   logic clk = 0;
   always #5 clk = ~clk;
 
-  fifo_if #(.DATA_WIDTH(8), .DEPTH(16)) vif();
+  fifo_if #(.DATA_WIDTH(8), .DEPTH(16)) vif(.clk(clk));
 
   fifo #(.DATA_WIDTH(8), .DEPTH(16)) dut (
     .clk(clk),
